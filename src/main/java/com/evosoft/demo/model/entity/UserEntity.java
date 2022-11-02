@@ -12,6 +12,7 @@ import lombok.*;
 @Setter
 @ToString
 @NoArgsConstructor
+@RequiredArgsConstructor
 @Entity
 @Table(name = "users")
 public class UserEntity extends BaseEntity {
@@ -38,5 +39,9 @@ public class UserEntity extends BaseEntity {
             .map(ResourceEntity::toDto)
             .collect(Collectors.toSet()))
         .build();
+    }
+
+    public static UserEntity fromDto(UserDto dto) {
+        return new UserEntity(dto.getUserName());
     }
 }
